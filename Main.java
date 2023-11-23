@@ -7,6 +7,7 @@ public class Main {
     private static Font universalFont = new Font(Font.SANS_SERIF, Font.BOLD, 50);
     private static boolean playerOne = true;
     private static String chosenButton;
+    private static String opponentButton;
 
 
 public static void main(String[] args) {
@@ -36,11 +37,24 @@ public static void main(String[] args) {
         menuButtons[i] = new JButton();
         // lägger från text från buttonText array
         menuButtons[i].setText(buttonText[i]);
+        int finalI = i;
+        menuButtons[i].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //logik för att hämta knappens string här:
+                JButton playerButton = (JButton) e.getSource();
+                //sätter variabeln på texterna av knapparna
+                chosenButton = playerButton.getText();
 
-        //logik för att hämta knappens string här:
+                opponentButton = "";
+                if (chosenButton.equals("X")){
+                    opponentButton = ("O");
+                }
+                else if (chosenButton.equals("O")) {
+                    opponentButton = ("X");}
+            }
+        });
 
-        //sätter variabeln på texterna av knapparna
-        chosenButton = menuButtons[i].getText();
         //lägger in i meny
         menuContainer.add(menuButtons[i]);
     }
@@ -67,13 +81,15 @@ public static void main(String[] args) {
             public void actionPerformed(ActionEvent e) {
                 // om playerOne = true och knappen inte är tagen kan de lägga sitt drag
                 if (playerOne & gameButtons[finalI].getText().isEmpty()){
-                    gameButtons[finalI].setText("X");
+                    gameButtons[finalI].setText(chosenButton);
+                    gameButtons[finalI].setForeground(Color.BLUE);
                     // playOne = false ( alltså O's tur efter dreaget )
                     playerOne = false;
                 }
                 // vice versa
                 else if (!playerOne & gameButtons[finalI].getText().isEmpty()){
-                    gameButtons[finalI].setText("O");
+                    gameButtons[finalI].setText(opponentButton);
+                    gameButtons[finalI].setForeground(Color.RED);
                     playerOne = true;
                 }
             }
