@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 public class Main {
     private static Font universalFont = new Font(Font.SANS_SERIF, Font.BOLD, 50);
+    private static boolean playerOne = true;
 public static void main(String[] args) {
     JFrame frame = new JFrame("Tic Tac Toe");
     frame.setSize(600,500);
@@ -33,18 +34,23 @@ public static void main(String[] args) {
     public static JButton createBoard(){
     JButton gameButtons = new JButton();
     gameButtons.setFont(universalFont);
-    boolean playerOne = false;
+
 
         gameButtons.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                if (playerOne == true & gameButtons.getText().isEmpty()){
+                // om playerOne = true
+                if (playerOne){
                     gameButtons.setText("X");
+                    // playOne = false ( alltså O's tur )
+                    playerOne = false;
                 }
                 else {
                     gameButtons.setText("O");
+                    playerOne = true;
                 }
+
+
             }
         });
 
