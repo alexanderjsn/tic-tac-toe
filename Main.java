@@ -22,7 +22,7 @@ public static void main(String[] args) {
     externalFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     externalFrame.setLayout(new FlowLayout());
 
-    JLabel menuLabel = new JLabel("Choose game mode");
+    JLabel menuLabel = new JLabel("Choose character");
     menuLabel.setFont(universalFont);
     JPanel menuContainer = new JPanel();
     menuContainer.setLayout(new GridLayout(3,2));
