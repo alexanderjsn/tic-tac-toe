@@ -35,7 +35,12 @@ public static void main(String[] args) {
         gameButtons.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameButtons.setText("X");
+                if (gameButtons.getText().isEmpty()){
+                    gameButtons.setText("X");
+                }
+                else {
+                    System.out.println("Not possible");
+                }
             }
         });
 
