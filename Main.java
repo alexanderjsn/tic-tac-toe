@@ -30,7 +30,15 @@ public static void main(String[] args) {
     public static JButton createBoard(){
     JButton gameButtons = new JButton();
     gameButtons.setFont(universalFont);
-    gameButtons.setText("X");
+
+
+        gameButtons.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameButtons.setText("X");
+            }
+        });
+
         return gameButtons;
     }
 
