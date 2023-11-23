@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Main {
+    private static Font universalFont = new Font(Font.SANS_SERIF, Font.BOLD, 50);
 public static void main(String[] args) {
     JFrame frame = new JFrame("Tic Tac Toe");
     frame.setSize(600,500);
@@ -28,6 +29,8 @@ public static void main(String[] args) {
     }
     public static JButton createBoard(){
     JButton gameButtons = new JButton();
+    gameButtons.setFont(universalFont);
+    gameButtons.setText("X");
         return gameButtons;
     }
 
