@@ -14,6 +14,11 @@ public static void main(String[] args) {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setLayout(new BorderLayout());
 
+    // extern skärm för val av spel
+    JFrame externalFrame = new JFrame("Choose game mode");
+    externalFrame.setSize(700,400);
+    externalFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    externalFrame.setLayout(new FlowLayout());
 
 
 
