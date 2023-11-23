@@ -40,12 +40,12 @@ public static void main(String[] args) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // om playerOne = true
-                if (playerOne){
+                if (playerOne & gameButtons.getText().isEmpty()){
                     gameButtons.setText("X");
                     // playOne = false ( alltså O's tur )
                     playerOne = false;
                 }
-                else {
+                else if (!playerOne & gameButtons.getText().isEmpty()){
                     gameButtons.setText("O");
                     playerOne = true;
                 }
