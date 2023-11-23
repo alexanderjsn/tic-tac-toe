@@ -13,6 +13,7 @@ public static void main(String[] args) {
 
 
 
+
     //container för knappar ( för layout )
     JPanel buttonContainer = new JPanel();
     buttonContainer.setLayout(new GridLayout(3,3));
@@ -27,19 +28,22 @@ public static void main(String[] args) {
 
     frame.setVisible(true);
     }
+
+
     public static JButton createBoard(){
     JButton gameButtons = new JButton();
     gameButtons.setFont(universalFont);
-
+    boolean playerOne = false;
 
         gameButtons.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (gameButtons.getText().isEmpty()){
+
+                if (playerOne == true & gameButtons.getText().isEmpty()){
                     gameButtons.setText("X");
                 }
                 else {
-                    System.out.println("Not possible");
+                    gameButtons.setText("O");
                 }
             }
         });
