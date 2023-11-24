@@ -10,10 +10,10 @@ public class Main {
     private static boolean playerOne = true;
     private static String chosenButton;
     private static String opponentButton;
-    private static boolean aiMode = true;
+    //private static boolean aiMode = true;
 
     // array av knappar
-    private static JButton[] gameButtons = new JButton[9];
+    private static final JButton[] gameButtons = new JButton[9];
 
     public static void main(String[] args) {
 
@@ -30,7 +30,7 @@ public class Main {
         externalFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         externalFrame.setLayout(new FlowLayout());
 
-        JLabel menuLabel = new JLabel("Choose character");
+        JLabel menuLabel = new JLabel("Choose symbol");
         menuLabel.setFont(universalFont);
         JPanel menuContainer = new JPanel();
         menuContainer.setLayout(new GridLayout(3, 2));
@@ -48,6 +48,7 @@ public class Main {
             menuButtons[i] = new JButton();
             // lägger från text från buttonText array
             menuButtons[i].setText(buttonText[i]);
+            menuButtons[i].setFont(universalFont);
             menuButtons[i].addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -55,8 +56,8 @@ public class Main {
                     JButton playerButton = (JButton) e.getSource();
                     //sätter variabeln på texterna av knapparna
                     chosenButton = playerButton.getText();
-
                     opponentButton = "";
+
                     if (chosenButton.equals("X")) {
                         opponentButton = ("O");
                         frame.setVisible(true);
@@ -114,13 +115,13 @@ public class Main {
                     }
 
                     // AI MODE
-                    else if (aiMode) {
+                    /*else if (aiMode) {
                         gameButtons[finalI].setText(chosenButton);
                         gameButtons[finalI].setForeground(Color.BLUE);
                         //När spelaren trycker in sin knapp, trycks en random knapp in.
                         gameButtons[randomNumber].setText(opponentButton);
                         gameButtons[finalI].setForeground(Color.RED);
-                    }
+                    }*/
 
                 }
             });
@@ -139,6 +140,15 @@ public class Main {
         gameMenu.add(turns);
         frame.add(gameMenu, BorderLayout.NORTH);
 
+
+        resetGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (JButton button : gameButtons) {
+                    button.setText("");
+                }
+            }
+        });
         startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -152,7 +162,7 @@ public class Main {
                     startGame.setEnabled(false);
 
                 } else {
-                    turns.setText(opponentButton + "turns");
+                    turns.setText(opponentButton + "turn");
                     startGame.setEnabled(false);
                     turns.setForeground(Color.RED);
 
@@ -180,21 +190,25 @@ public class Main {
         } else if ((gameButtons[6].getText().equals(opponentButton)) &&
                 (gameButtons[7].getText().equals(opponentButton)) &&
                 (gameButtons[8].getText().equals(opponentButton))) {
-            System.out.println(opponentButton + " wins");
+
+            opponentVictory();
         }
 
 // Columns
         if ((gameButtons[0].getText().equals(opponentButton)) &&
                 (gameButtons[3].getText().equals(opponentButton)) &&
                 (gameButtons[6].getText().equals(opponentButton))) {
+            opponentVictory();
             System.out.println(opponentButton + " wins");
         } else if ((gameButtons[1].getText().equals(opponentButton)) &&
                 (gameButtons[4].getText().equals(opponentButton)) &&
                 (gameButtons[7].getText().equals(opponentButton))) {
+            opponentVictory();
             System.out.println(opponentButton + " wins");
         } else if ((gameButtons[2].getText().equals(opponentButton)) &&
                 (gameButtons[5].getText().equals(opponentButton)) &&
                 (gameButtons[8].getText().equals(opponentButton))) {
+            opponentVictory();
             System.out.println(opponentButton + " wins");
         }
 
@@ -202,10 +216,12 @@ public class Main {
         if ((gameButtons[0].getText().equals(opponentButton)) &&
                 (gameButtons[4].getText().equals(opponentButton)) &&
                 (gameButtons[8].getText().equals(opponentButton))) {
+            opponentVictory();
             System.out.println(opponentButton + " wins");
         } else if ((gameButtons[2].getText().equals(opponentButton)) &&
                 (gameButtons[4].getText().equals(opponentButton)) &&
                 (gameButtons[6].getText().equals(opponentButton))) {
+            opponentVictory();
             System.out.println(opponentButton + " wins");
         }
 
@@ -215,45 +231,59 @@ public class Main {
         if ((gameButtons[0].getText().equals(chosenButton)) &&
                 (gameButtons[1].getText().equals(chosenButton)) &&
                 (gameButtons[2].getText().equals(chosenButton))) {
-            System.out.println(chosenButton + " wins");
+            playerVictory();             System.out.println(chosenButton + " wins");
         } else if ((gameButtons[3].getText().equals(chosenButton)) &&
                 (gameButtons[4].getText().equals(chosenButton)) &&
                 (gameButtons[5].getText().equals(chosenButton))) {
-            System.out.println(chosenButton + " wins");
+            playerVictory();             System.out.println(chosenButton + " wins");
         } else if ((gameButtons[6].getText().equals(chosenButton)) &&
                 (gameButtons[7].getText().equals(chosenButton)) &&
                 (gameButtons[8].getText().equals(chosenButton))) {
-            System.out.println(chosenButton + " wins");
+            playerVictory();             System.out.println(chosenButton + " wins");
         }
 
 // Columns
         if ((gameButtons[0].getText().equals(chosenButton)) &&
                 (gameButtons[3].getText().equals(chosenButton)) &&
                 (gameButtons[6].getText().equals(chosenButton))) {
+            playerVictory();
             System.out.println(chosenButton + " wins");
         } else if ((gameButtons[1].getText().equals(chosenButton)) &&
                 (gameButtons[4].getText().equals(chosenButton)) &&
                 (gameButtons[7].getText().equals(chosenButton))) {
-            System.out.println(chosenButton + " wins");
+            playerVictory();             System.out.println(chosenButton + " wins");
         } else if ((gameButtons[2].getText().equals(chosenButton)) &&
                 (gameButtons[5].getText().equals(chosenButton)) &&
                 (gameButtons[8].getText().equals(chosenButton))) {
-            System.out.println(chosenButton + " wins");
+            playerVictory();             System.out.println(chosenButton + " wins");
         }
 
 // Diagonals
         if ((gameButtons[0].getText().equals(chosenButton)) &&
                 (gameButtons[4].getText().equals(chosenButton)) &&
                 (gameButtons[8].getText().equals(chosenButton))) {
-            System.out.println(chosenButton + " wins");
+            playerVictory();             System.out.println(chosenButton + " wins");
         } else if ((gameButtons[2].getText().equals(chosenButton)) &&
                 (gameButtons[4].getText().equals(chosenButton)) &&
                 (gameButtons[6].getText().equals(chosenButton))) {
-            System.out.println(chosenButton + " wins");
+            playerVictory();         }
+    }
+    public static void opponentVictory() {
+        JOptionPane.showMessageDialog(null, opponentButton + " won!", "Alert", JOptionPane.INFORMATION_MESSAGE);
+        // itererar genom knapp listan för att kunna hömta och ändra dem utanför sitt scope
+        for (JButton button : gameButtons) {
+            button.setEnabled(false);
         }
-
-
+    //start game enabled
 
     }
+    public static void playerVictory() {
+        JOptionPane.showMessageDialog(null, chosenButton + " won!", "Alert", JOptionPane.INFORMATION_MESSAGE);
+        for (JButton button : gameButtons) {
+            button.setEnabled(false);
+        }
+    //start game enabled
+    }
 }
+
 
