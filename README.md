@@ -1,4 +1,4 @@
-# Tic Tac Toe (grupp2)
+# Tic Tac Toe 
 
 Ett enkelt Tic Tac Toe spel där man kan spela mot AI och andra spelare
 
